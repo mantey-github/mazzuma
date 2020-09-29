@@ -4,9 +4,10 @@
 [![Software License][ico-license]](LICENSE)
 [![Total Downloads][ico-downloads]][link-downloads]
 
-Mazzuma provides easy to use interfaces for connecting your web application or mobile 
-application to the service. This allow you to gain mobile money payments from customers and 
-clients with optimal ease and at no extra charges (standard mobile money operator charges apply).
+This package provide an easy way to integrate [Mazzuma](https://mazzuma.com/) into your payment web application. 
+
+Mazzuma allows you to gain mobile money payments from customers and clients with optimal ease 
+and at no extra charges (standard mobile money operator charges apply).
 
 ## Installation
 
@@ -18,6 +19,7 @@ composer require mantey/mazzuma
 
 ## Usage
 Head over to the [mazzuma dashboard](https://dashboard.teamcyst.com/) and create a new Mazzuma account to get your API key.
+
 Open the `/config/mazzuma.php` and set the key with your Mazzuma API Key.
 
 ##### Mazzuma Mobile Money Payment
@@ -29,8 +31,7 @@ use Mantey\Mazzuma\Mazzuma;
 
 //Make Mobile Money Pament
 
-$response = (new Mazzuma)
-        ->payWith('mobile-money')
+$response = (new Mazzuma('mobile-money'))
         ->makePayment([
             "price" => 1,
             "network" => "mtn",
@@ -46,8 +47,7 @@ print_r($response);
 
 $verifyID = '1223234';
 
-$response = (new MazzumaApi)
-                ->payWith('mobile-money')
+$response = (new MazzumaApi('mobile-money'))
                 ->verify($verifyID);
                 
 print_r($response);
@@ -62,8 +62,7 @@ use Mantey\Mazzuma\Mazzuma;
 
 //Make Token Pament
 
-$response = (new Mazzuma)
-        ->payWith('token')
+$response = (new Mazzuma('token'))
         ->makePayment([
             "amount"=> 1,
             "recipient"=> "",
@@ -76,8 +75,7 @@ print_r($response);
 
 $hashVerifyID = '1223234';
 
-$response = (new MazzumaApi)
-                ->payWith('mobile-money')
+$response = (new MazzumaApi('token'))
                 ->verify($hashVerifyID);
                 
 print_r($response);
@@ -92,8 +90,7 @@ use Mantey\Mazzuma\Mazzuma;
 
 //Get Balance
 
-$response = (new Mazzuma)
-        ->payWith('mobile-money')
+$response = (new Mazzuma('token'))
         ->getBalance();
                 
 print_r($response);

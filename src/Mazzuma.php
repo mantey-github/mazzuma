@@ -5,22 +5,27 @@ use Exception;
 
 class Mazzuma
 {
-    protected $key;
-
     protected $service;
 
-    public function __construct()
+    /**
+     * Mazzuma constructor.
+     * @param $service
+     * @throws Exception
+     */
+    public function __construct($service)
     {
         $config = include __DIR__.'/../config/mazzuma.php';
-        $this->key = $config['key'];
+
+        $this->payWith($service, $config['key']);
     }
 
     /**
      * @param $service
+     * @param $key
      * @return mixed
      * @throws Exception
      */
-    public function payWith($service)
+    private function payWith($service, $key)
     {
         $serviceClass = __NAMESPACE__ . '\\PayService\\'.$this->studly($service).'Service';
         if (!class_exists($serviceClass)) {
@@ -28,7 +33,7 @@ class Mazzuma
             throw new Exception($error);
         }
 
-        return new $serviceClass($this->key);
+        return new $serviceClass($key);
     }
 
     public function studly($value)
