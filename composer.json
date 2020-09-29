@@ -1,0 +1,22 @@
+{
+    "name": "mantey/mazzuma",
+    "description": "An easy way to integrate mazzuma api into your payment application",
+    "keywords": ["mazzuma", "payment", "finance", "mobile money", "php package"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Mantey",
+            "email": "contactmantey@gmail.com"
+        }
+    ],
+    "homepage": "https://github.com/mantey-github/mazzuma",
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mantey\\Mazzuma\\": "src/"
+        }
+    }
+}
